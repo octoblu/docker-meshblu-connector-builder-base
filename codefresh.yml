@@ -6,7 +6,7 @@ steps:
     description: Building the image [linux-armv7]...
     working_directory: ${{main_clone}}/linux-armv7
     dockerfile: Dockerfile
-    image_name: ${{CF_REPO_OWNER}}/dockcross-node
+    image_name: ${{CF_REPO_OWNER}}/meshblu-connector-builder-base
     tag: 'linux-armv7'
 
   push_to_registry_linux_armv7:
@@ -20,7 +20,7 @@ steps:
     description: Building the image [linux-x86]...
     working_directory: ${{main_clone}}/linux-x86
     dockerfile: Dockerfile
-    image_name: ${{CF_REPO_OWNER}}/dockcross-node
+    image_name: ${{CF_REPO_OWNER}}/meshblu-connector-builder-base
     tag: 'linux-x86'
 
   push_to_registry_linux_x86:
@@ -34,7 +34,7 @@ steps:
     description: Building the image [linux-x64]...
     working_directory: ${{main_clone}}/linux-x64
     dockerfile: Dockerfile
-    image_name: ${{CF_REPO_OWNER}}/dockcross-node
+    image_name: ${{CF_REPO_OWNER}}/meshblu-connector-builder-base
     tag: 'linux-x64'
 
   push_to_registry_linux_x64:
