@@ -1,6 +1,5 @@
 version: '1.0'
 steps:
-
   build_image_ruby_armv7:
     type: build
     description: Building the image [ruby-armv7]...
