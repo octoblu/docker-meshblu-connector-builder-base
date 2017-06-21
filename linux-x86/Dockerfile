@@ -1,8 +1,7 @@
 FROM ruby:2.4.1
 
-RUN gem install deb-s3
-
 WORKDIR /work
+ADD upload-deb-s3 .
 ENV npm_config_arch ia32
 
 RUN dpkg --add-architecture i386
@@ -27,3 +26,4 @@ RUN mkdir -p /opt/yarn && \
   curl --silent -L https://yarnpkg.com/latest.tar.gz | tar --strip 1 -xz -C /opt/yarn
 ENV PATH /opt/yarn/bin:/opt/node/bin:$PATH
 RUN mkdir -p /tmp/cache && chmod 777 /tmp/cache
+RUN gem install deb-s3

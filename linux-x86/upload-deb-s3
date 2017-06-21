@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for file in $(ls deploy/*/installers/*.deb); do
+  deb-s3 upload --prefix apt --bucket meshblu-connector $file
+done
