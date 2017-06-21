@@ -1,4 +1,6 @@
-FROM debian:jessie
+FROM ruby:2.4.1
+
+RUN gem install deb-s3
 
 WORKDIR /work
 RUN apt-get update --fix-missing \

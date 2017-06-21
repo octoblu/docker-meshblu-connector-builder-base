@@ -1,4 +1,6 @@
-FROM debian:jessie
+FROM ruby:2.4.1
+
+RUN gem install deb-s3
 
 WORKDIR /work
 ENV npm_config_arch ia32
