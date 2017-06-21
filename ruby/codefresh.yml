@@ -1,0 +1,16 @@
+version: '1.0'
+steps:
+
+  build_image_ruby_armv7:
+    type: build
+    description: Building the image [ruby-armv7]...
+    working_directory: ${{main_clone}}/ruby-armv7
+    dockerfile: Dockerfile
+    image_name: ${{CF_REPO_OWNER}}/meshblu-connector-builder-base
+    tag: 'ruby-armv7'
+
+  push_to_registry_ruby_armv7:
+    title: Pushing to Docker Registry [ruby-armv7]...
+    type: push
+    candidate: '${{build_image_ruby_armv7}}'
+    tag: 'ruby-armv7'
