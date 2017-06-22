@@ -1,7 +1,7 @@
 FROM ruby:2.4.1
 
 WORKDIR /work
-ADD upload-deb-s3 .
+COPY upload-deb-s3 .
 ENV npm_config_arch ia32
 
 RUN dpkg --add-architecture i386

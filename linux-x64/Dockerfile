@@ -1,7 +1,7 @@
 FROM ruby:2.4.1
 
 WORKDIR /work
-ADD upload-deb-s3 .
+COPY upload-deb-s3 .
 
 RUN apt-get update --fix-missing \
   && apt-get install -y --no-install-recommends \
