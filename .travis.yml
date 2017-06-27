@@ -1,0 +1,64 @@
+branches:
+  only:
+  - master
+env:
+  global:
+  - secure: IZKoyC3femIY/fG2pMtSHffHWrwaMLWs6t64HFv6CpmYMRNdki0bw51bkoolzccNMyLbLK/dkK1k2GFMA5ILXA1IBiM0V351aEViYyHg7YCPrgF7fcBqrwoJcwAMslqbaEkAbQEvIZMSAjR1EqmIs5xe4T5kOzjEf1jPMyOWGhh7j0rC6e6bglrZiqMvu2MAPnpMiqHaWP95p8rpFuusCQjTPMMarudaVlYGRCwl0EDgD+GQYDBiSsLMjN/lsUcFdcEMQs0AJm+u71x4ntqqwBPbwsd+zHP5W5ECCqxjQM9T0WOf9GMzm00uLc+mxgFiUpIozGUKrtslAR8pRHRd1HokWBrcjVRQeJTL/jeC0XS3yXvNUdRhEYCdshr1ckIJucC2RDDjn1NqicH2eAzmRHRIQbfO66Lp0oiZvghuKnaFNZCzDUKDbQpFpTNqGgRw82MAXRb2L9YmYKE767weI0JQlzJEsPShfTK/Mk3XQz3BPiHABOAuxGyInMPMqgt1gCMj2Kpu11kAdoN37E8bkMMfILrvT8saDAfG+evRKJ3JRajxXVfgg0Zlb77dtCs5SV/SX/pB9WF72fD9tu5ekx1jNg6SLswg5Cl6O7a0hj3JsmCxbIWPfD5XyNFMRt66r1AoX+TyBg1belnAHwo1bSPJJBOVCgW/g4eW3imykWI=
+  - secure: OBx/frA+y3b9DjmEJDKcE5oqBQ+fUpKSUg2LAHRWxOOF17pU8Di9RVwu4xF5hNZSpC8AFNeproJ1w8TfvI50wfzhWf5pdZucC3P1Uznlz9+YoHt27nLfzIaX2DAnSJfRd1zPyZnVeh3W1o8xg/8F6X65O4xMd5O1oIeLzLQvpToM2/BIj1Cq6Wllo1cvOrjEd2ystFpJ2AIZUvRR1wHCQ5+ZDgG3blpfAQ0vaiWqlqlOPoxIsfHXxCIShL1552BJiUKROJPts0qZtaKqwMqcS5zYjcjmn+9OGEXx5DkceUxsBbKy62gSr/FBIYqyb+giUNVNY5QQSjNwvaunnOkccrQ9wzmuaJbppRUieuzwxo0zDTEZzMobGwyjYVIOhrpmB3WGh46D682c8fcM1WNPlTWaQQv3ubAEkzLw3mFQatrIU4fQV/WzhsJngNP9FZqSJbi2+aO3Zj40vX2pebVeuCix923XILIKBd/mhUUVVyaibrJ6VpzFQwAZ70evQBNWB0IAzvMxSztArsp7MhE3x5E3RaFwc+g3yV2SnHLxQ4t+Mp6CSpaudCvJqMtyJDbux+2VV5z/ERyD1Rdkt5DJDXZPbnz7zR2cpskefkgL8uYocz6UjMKEP7yHprPurU4VGx9GxLT/lHWQo++0FMN+m1IXJAGN5cOgwPhSiS/8UHs=
+matrix:
+  fast_finish: true
+  include:
+  - os: linux
+    dist: trusty
+    language: shell
+    sudo: required
+    services:
+    - docker
+    install:
+    - docker pull octoblu/meshblu-connector-builder-base:ruby-armv7
+    - docker pull octoblu/meshblu-connector-builder-base:linux-armv7
+    script:
+    - |
+      pushd "./ruby-armv7"
+        docker build octoblu/meshblu-connector-builder-base:ruby-armv7 .
+      popd "./ruby-armv7"
+    - |
+      pushd "./linux-armv7"
+        docker build octoblu/meshblu-connector-builder-base:linux-armv7 .
+      popd "./linux-armv7"
+    after_success:
+    - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
+    - docker push meshblu-connector-builder-base:ruby-armv7
+    - docker push meshblu-connector-builder-base:linux-armv7
+  - os: linux
+    dist: trusty
+    language: shell
+    sudo: required
+    services:
+    - docker
+    install:
+    - docker pull octoblu/meshblu-connector-builder-base:linux-x64
+    script:
+    - |
+      pushd "./linux-x64"
+        docker build octoblu/meshblu-connector-builder-base:linux-x64 .
+      popd "./linux-x64"
+    after_success:
+    - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
+    - docker push meshblu-connector-builder-base:linux-x64
+  - os: linux
+    dist: trusty
+    language: shell
+    sudo: required
+    services:
+    - docker
+    install:
+    - docker pull octoblu/meshblu-connector-builder-base:linux-x86
+    script:
+    - |
+      pushd "./linux-x86"
+        docker build octoblu/meshblu-connector-builder-base:linux-x86 .
+      popd "./linux-x86"
+    after_success:
+    - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
+    - docker push meshblu-connector-builder-base:linux-x86
