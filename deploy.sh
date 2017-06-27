@@ -4,7 +4,7 @@ set -e
 
 build_and_deploy() {
   local name="$1"
-  pushd ./ruby-armv7 > /dev/null
+  pushd ./$name > /dev/null
     docker build -t "local/meshblu-connector-builder-base:$name" .
     docker tag "local/meshblu-connector-builder-base:$name" "octoblu/meshblu-connector-builder-base:$name"
     docker push "octoblu/meshblu-connector-builder-base:$name"
