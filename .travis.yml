@@ -20,11 +20,11 @@ matrix:
     script:
     - |
       pushd $PWD/ruby-armv7
-        docker build octoblu/meshblu-connector-builder-base:ruby-armv7 .
+        docker build -t octoblu/meshblu-connector-builder-base:ruby-armv7 . || exit 1
       popd
     - |
       pushd $PWD/linux-armv7
-        docker build octoblu/meshblu-connector-builder-base:linux-armv7 .
+        docker build -t octoblu/meshblu-connector-builder-base:linux-armv7 . || exit 1
       popd
     after_success:
     - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
@@ -41,7 +41,7 @@ matrix:
     script:
     - |
       pushd $PWD/linux-x64
-        docker build octoblu/meshblu-connector-builder-base:linux-x64 .
+        docker build -t octoblu/meshblu-connector-builder-base:linux-x64 . || exit 1
       popd
     after_success:
     - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
@@ -57,7 +57,7 @@ matrix:
     script:
     - |
       pushd $PWD/linux-x86
-        docker build octoblu/meshblu-connector-builder-base:linux-x86 .
+        docker build -t octoblu/meshblu-connector-builder-base:linux-x86 . || exit 1
       popd
     after_success:
     - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
