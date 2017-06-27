@@ -8,7 +8,7 @@ build_and_deploy() {
     docker build -t "local/meshblu-connector-builder-base:$name" .
     docker tag "local/meshblu-connector-builder-base:$name" "octoblu/meshblu-connector-builder-base:$name"
     docker push "octoblu/meshblu-connector-builder-base:$name"
-  popd ./ruby-armv7 > /dev/null
+  popd > /dev/null
 }
 
 main() {
