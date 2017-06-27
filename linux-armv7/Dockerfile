@@ -1,7 +1,7 @@
 FROM octoblu/meshblu-connector-builder-base:ruby-armv7
 
 WORKDIR /work
-COPY upload-deb-s3 .
+COPY upload-deb-s3 /usr/local/bin/upload-deb-s3
 RUN [ "cross-build-start" ]
 
 RUN apt-get update --fix-missing \
