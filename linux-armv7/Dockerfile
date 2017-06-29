@@ -1,4 +1,4 @@
-FROM octoblu/meshblu-connector-builder-base:ruby-armv7
+FROM octoblu/meshblu-connector-builder-ruby:linux-armv7
 
 WORKDIR /work
 RUN [ "cross-build-start" ]

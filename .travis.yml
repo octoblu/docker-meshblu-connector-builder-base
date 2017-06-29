@@ -14,21 +14,18 @@ matrix:
     sudo: required
     services:
     - docker
+    cache:
+      directories:
+      - $HOME/docker
     install:
-    - docker pull octoblu/meshblu-connector-builder-base:ruby-armv7
-    - docker pull octoblu/meshblu-connector-builder-base:linux-armv7
+    - docker pull octoblu/meshblu-connector-builder-ruby:linux-armv7
     script:
-    - |
-      pushd $PWD/ruby-armv7
-        docker build -t octoblu/meshblu-connector-builder-base:ruby-armv7 . || exit 1
-      popd
     - |
       pushd $PWD/linux-armv7
         docker build -t octoblu/meshblu-connector-builder-base:linux-armv7 . || exit 1
       popd
     after_success:
     - docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD"
-    - docker push meshblu-connector-builder-base:ruby-armv7
     - docker push meshblu-connector-builder-base:linux-armv7
   - os: linux
     dist: trusty
@@ -36,8 +33,9 @@ matrix:
     sudo: required
     services:
     - docker
-    install:
-    - docker pull octoblu/meshblu-connector-builder-base:linux-x64
+    cache:
+      directories:
+      - $HOME/docker
     script:
     - |
       pushd $PWD/linux-x64
@@ -52,8 +50,9 @@ matrix:
     sudo: required
     services:
     - docker
-    install:
-    - docker pull octoblu/meshblu-connector-builder-base:linux-x86
+    cache:
+      directories:
+      - $HOME/docker
     script:
     - |
       pushd $PWD/linux-x86
