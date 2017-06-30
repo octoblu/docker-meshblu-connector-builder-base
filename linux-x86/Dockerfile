@@ -17,6 +17,8 @@ RUN apt-get update --fix-missing \
     libusb-1.0-0-dev:i386 \
     libbluetooth-dev:i386 \
     libudev-dev:i386 \
+    dpkg-sig \
+    openssl \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt/node && \
