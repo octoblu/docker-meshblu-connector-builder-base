@@ -12,9 +12,9 @@ build_and_deploy() {
 }
 
 main() {
-  build_and_deploy 'linux-armv7'
-  build_and_deploy 'linux-x86'
   build_and_deploy 'linux-x64'
+  build_and_deploy 'linux-x86'
+  build_and_deploy 'linux-armv7'
 }
 
 main "$@"
