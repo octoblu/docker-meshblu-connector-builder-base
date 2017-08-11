@@ -17,7 +17,7 @@ RUN apt-get update --fix-missing \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt/node && \
-  curl --silent -L https://nodejs.org/dist/v8.3.0/node-v8.3.0-linux-x64.tar.xz | tar --strip 1 -xJ -C /opt/node
+  curl --silent -L https://nodejs.org/dist/v8.1.0/node-v8.1.0-linux-x64.tar.xz | tar --strip 1 -xJ -C /opt/node
 RUN mkdir -p /opt/yarn && \
   curl --silent -L https://yarnpkg.com/latest.tar.gz | tar --strip 1 -xz -C /opt/yarn
 ENV PATH /opt/yarn/bin:/opt/node/bin:$PATH
