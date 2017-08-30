@@ -1,10 +1,10 @@
-FROM octoblu/meshblu-connector-builder-ruby:linux-armv7
+FROM arm32v7/ruby:2.4.1
 
 WORKDIR /work
-RUN [ "cross-build-start" ]
 
 RUN apt-get update --fix-missing \
   && apt-get install -y --no-install-recommends \
+    ca-certificates \
     build-essential \
     python \
     python2.7 \
@@ -14,7 +14,6 @@ RUN apt-get update --fix-missing \
     libudev-dev \
     dpkg-sig \
     openssl \
-    git \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt/node && \
@@ -24,6 +23,3 @@ RUN mkdir -p /opt/yarn && \
 ENV PATH /opt/yarn/bin:/opt/node/bin:$PATH
 RUN mkdir -p /tmp/cache && chmod 777 /tmp/cache
 RUN gem install deb-s3
-
-RUN [ "cross-build-end" ]
-ENTRYPOINT [ "/usr/bin/qemu-arm-static", "/usr/bin/env", "QEMU_EXECVE=1" ]
