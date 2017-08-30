@@ -14,6 +14,7 @@ RUN apt-get update --fix-missing \
     libudev-dev \
     dpkg-sig \
     openssl \
+    git \
   && rm -rf /var/lib/apt/lists/*
 
 RUN mkdir -p /opt/node && \
